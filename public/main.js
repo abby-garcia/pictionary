@@ -3,9 +3,9 @@ var pictionary = function() {
 
     var draw = function(position) { //Draw function! 
         context.beginPath(); //this tells that you are about to start drawing a new object
-        context.arc(position.x, position.y, // used to draw arc
+        context.arc(position.x, position.y, // used to draw arcs
                          6, 0, 2 * Math.PI);
-        context.fill();
+        context.fill(); //fills the path in to create a solid black cirlce
     };
 
     canvas = $('canvas');  // use jQuery to select the canvas element
@@ -24,5 +24,15 @@ $(document).ready(function() {
     pictionary();
 });
 
+//Comments
 
+canvas.on('mousedown', function(event){
+    var drawing = true;
+});
 
+canvas.on('mouseup', function(event){
+    var drawing = false;
+});
+
+then add:
+    var drawing = true; // on line 16?
