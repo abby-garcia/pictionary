@@ -34,5 +34,10 @@ canvas.on('mouseup', function(event){
     var drawing = false;
 });
 
+canvas.on('draw', function(event){
+    draw();
+});
+
+
 then add:
     var drawing = true; // on line 16?
