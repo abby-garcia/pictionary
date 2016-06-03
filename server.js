@@ -12,8 +12,8 @@ var io = socket_io(server);
 io.on('connection', function (socket) {
 
 
-	socket.on('draw', function(position){
-		socket.broadcast.emit     //emit to other clients
+	socket.on('draw', function(position){ //tell every I started drawing
+		socket.broadcast.emit('draw', position);  //emit to other clients
 
 
 	});
@@ -22,19 +22,6 @@ io.on('connection', function (socket) {
 
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

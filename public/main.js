@@ -1,6 +1,7 @@
 var pictionary = function() {
-    var canvas, context;
-
+    var canvas, context; // short hand for declaring variables
+    var socket = io(); // global variable, on line 20 then you can 
+    var drawing = false;
     var draw = function(position) { //Draw function! 
         context.beginPath(); //this tells that you are about to start drawing a new object
         context.arc(position.x, position.y, // used to draw arcs
@@ -13,31 +14,59 @@ var pictionary = function() {
     canvas[0].width = canvas[0].offsetWidth; //width and height are equal
     canvas[0].height = canvas[0].offsetHeight; //width and height are equal
     canvas.on('mousemove', function(event) { // mousemove listener
-        var offset = canvas.offset();
-        var position = {x: event.pageX - offset.left,
-                        y: event.pageY - offset.top}; //by subtracting the offset we obtain the position of the mouse relative to the top-left of the canvas
-        draw(position);
+        if(drawing){ // if this is true
+
+            var offset = canvas.offset();
+            var position = {x: event.pageX - offset.left,
+                            y: event.pageY - offset.top}; //by subtracting the offset we obtain the position of the mouse relative to the top-left of the canvas
+            draw(position); // call the draw function; DRAWS FOR ME
+            socket.emit('draw', position); //LOCAL /event and parameter ; let serve know I'm drawing                  
+        }
     });
+
+    canvas.on('mousedown', function(event){
+        drawing = true;
+
+    });
+
+    canvas.on('mouseup', function(event){
+        drawing = false;
+    });
+
+    socket.on('draw', function(position){ // responds to server whnever someone draws
+        draw(position); //draws for everyone ELSE!!!!
+    });
+
+
+
+
+
 };
 
 $(document).ready(function() {
+    
     pictionary();
 });
 
 //Comments
 
-canvas.on('mousedown', function(event){
-    var drawing = true;
-});
-
-canvas.on('mouseup', function(event){
-    var drawing = false;
-});
-
-canvas.on('draw', function(event){
-    draw();
-});
 
 
-then add:
-    var drawing = true; // on line 16?
+
+
+
+
+// // Guessing Section
+// var guessBox;
+
+// var onKeyDown = function(event) {
+//     if (event.keyCode != 13) { // Enter
+//         return;
+//     }
+
+//     console.log(guessBox.val());
+//     guessBox.val('');
+// };
+
+// guessBox = $('#guess input');
+// guessBox.on('keydown', onKeyDown);    
