@@ -36,7 +36,11 @@ var pictionary = function() {
     });
 
     socket.on('new connection', function(artist){ // true or false are being passed 'drawer = true' or 'drawer = false'! 
-        drawer = artist;
+        drawer = artist; 
+        if(drawer){
+            $('#guess').hide(); // hides guess box for drawer
+            // generate a random number between zero and length of array/ Math.floor / alert word out to drawer
+        }
     });
     socket.on('draw', function(position){ // responds to server whnever someone draws
         draw(position); //draws for everyone ELSE!!!!
