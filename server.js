@@ -9,15 +9,25 @@ var server = http.Server(app);
 var io = socket_io(server);
 
 
-io.on('connection', function (socket) {
+var numUsers = 0;
 
+//then create a counter
+
+io.on('connection', function (socket) {
+	var drawer = false; 
+	numUsers++; // on connect we increase one
+
+	if(numUsers == 1){
+		drawer = true;
+	}
+	socket.emit('new connection', drawer); // here we're passing on drawer to the front end
 
 	socket.on('draw', function(position){ //tell every I started drawing
 		socket.broadcast.emit('draw', position);  //emit to other clients
 	});
 
-	socket.on('guess', function(guessBox){ //where is 'guess' on the main.js side?
-		socket.broadcast.emit('guess', position);  // is position right?
+	socket.on('guess', function(guess){ //where is 'guess' on the main.js side?
+		socket.broadcast.emit('guess', guess);  // is position right?
 	});
 
 

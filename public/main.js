@@ -1,7 +1,9 @@
+//Front end code
 var pictionary = function() {
     var canvas, context; // short hand for declaring variables
     var socket = io(); // global variable, on line 20 then you can 
     var drawing = false;
+    var drawer = false;
     var draw = function(position) { //Draw function! 
         context.beginPath(); //this tells that you are about to start drawing a new object
         context.arc(position.x, position.y, // used to draw arcs
@@ -14,7 +16,7 @@ var pictionary = function() {
     canvas[0].width = canvas[0].offsetWidth; //width and height are equal
     canvas[0].height = canvas[0].offsetHeight; //width and height are equal
     canvas.on('mousemove', function(event) { // mousemove listener
-        if(drawing){ // if this is true
+        if(drawing && drawer){ // if this is true
 
             var offset = canvas.offset();
             var position = {x: event.pageX - offset.left,
@@ -33,12 +35,15 @@ var pictionary = function() {
         drawing = false;
     });
 
+    socket.on('new connection', function(artist){ // true or false are being passed 'drawer = true' or 'drawer = false'! 
+        drawer = artist;
+    });
     socket.on('draw', function(position){ // responds to server whnever someone draws
         draw(position); //draws for everyone ELSE!!!!
     });
 
-    socket.on('guess', function(position){ //
-        $("#guessMade").text(); 
+    socket.on('guess', function(guess){ //
+        $("#guessMade").text(guess); 
     });
 
     // Guessing Section
@@ -50,6 +55,9 @@ var pictionary = function() {
         }
 
         console.log(guessBox.val());
+
+        socket.emit('guess',guessBox.val());
+
         guessBox.val('');
     };
 
