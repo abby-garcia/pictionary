@@ -37,7 +37,24 @@ var pictionary = function() {
         draw(position); //draws for everyone ELSE!!!!
     });
 
+    socket.on('guess', function(position){ //
+        $("#guessMade").text(); 
+    });
 
+    // Guessing Section
+    var guessBox;
+
+    var onKeyDown = function(event) {
+        if (event.keyCode != 13) { // Enter
+            return;
+        }
+
+        console.log(guessBox.val());
+        guessBox.val('');
+    };
+
+    guessBox = $('#guess input'); //When there is a keydown event fired by the input you check to see whether the enter key was pressed. If it was pressed, then you log the value to the console and reset the input to be empty.
+    guessBox.on('keydown', onKeyDown);    
 
 
 
@@ -56,17 +73,3 @@ $(document).ready(function() {
 
 
 
-// // Guessing Section
-// var guessBox;
-
-// var onKeyDown = function(event) {
-//     if (event.keyCode != 13) { // Enter
-//         return;
-//     }
-
-//     console.log(guessBox.val());
-//     guessBox.val('');
-// };
-
-// guessBox = $('#guess input');
-// guessBox.on('keydown', onKeyDown);    
