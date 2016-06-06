@@ -65,9 +65,22 @@ var pictionary = function() {
         draw(position); //draws for everyone ELSE!!!!
     });
 
-    socket.on('guess', function(guess){ //
+    socket.on('guess', function(guess){ //modify socket.on('guess' on the server to compare the guess to the word in memory
         $("#guessMade").text(guess); 
+
+        if( $("#guessMade").text(guess) == randomWord){ // line 7 of instructions
+
+        }
+
     });
+
+    socket.emit('word', randomWord); //line 4 in instructions
+
+    socket.on('match', function(gameOver){
+        drawer = false;
+        alert("Someone Guessed It! :)"); // line 9 of instructions
+
+    })
 
     // Guessing Section
     var guessBox;
@@ -96,7 +109,8 @@ $(document).ready(function() {
     pictionary();
 });
 
-//Comments
+
+
 
 
 

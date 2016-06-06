@@ -30,6 +30,15 @@ io.on('connection', function (socket) {
 		socket.broadcast.emit('guess', guess);  // is position right?
 	});
 
+	socket.on('word', function(word){ //socket.on should set word to a global so that the server has that in memory
+
+
+	});
+
+	socket.on('match', function(gameOver){
+		socket.broadcast.emit('match', gameOver);
+	});
+
 
 
 });
