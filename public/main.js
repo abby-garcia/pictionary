@@ -11,6 +11,22 @@ var pictionary = function() {
         context.fill(); //fills the path in to create a solid black cirlce
     };
 
+    var words = [
+    "word", "letter", "number", "person", "pen", "class", "people",
+    "sound", "water", "side", "place", "man", "men", "woman", "women", "boy",
+    "girl", "year", "day", "week", "month", "name", "sentence", "line", "air",
+    "land", "home", "hand", "house", "picture", "animal", "mother", "father",
+    "brother", "sister", "world", "head", "page", "country", "question",
+    "answer", "school", "plant", "food", "sun", "state", "eye", "city", "tree",
+    "farm", "story", "sea", "night", "day", "life", "north", "south", "east",
+    "west", "child", "children", "example", "paper", "music", "river", "car",
+    "foot", "feet", "book", "science", "room", "friend", "idea", "fish",
+    "mountain", "horse", "watch", "color", "face", "wood", "list", "bird",
+    "body", "dog", "family", "song", "door", "product", "wind", "ship", "area",
+    "rock", "order", "fire", "problem", "piece", "top", "bottom", "king",
+    "space"
+];
+
     canvas = $('canvas');  // use jQuery to select the canvas element
     context = canvas[0].getContext('2d'); //  function to create a drawing context for the canvas /    context object allows you to draw simple graphics to the canvas
     canvas[0].width = canvas[0].offsetWidth; //width and height are equal
@@ -39,7 +55,17 @@ var pictionary = function() {
         drawer = artist; 
         if(drawer){
             $('#guess').hide(); // hides guess box for drawer
-            // generate a random number between zero and length of array/ Math.floor / alert word out to drawer
+            var randomNumber = Math.floor();
+            alert(rand)
+
+
+            // generate a random number between zero and length of array
+            // Math.floor / alert word out to drawer
+        
+
+
+
+
         }
     });
     socket.on('draw', function(position){ // responds to server whnever someone draws
