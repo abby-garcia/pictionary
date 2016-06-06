@@ -55,17 +55,10 @@ var pictionary = function() {
         drawer = artist; 
         if(drawer){
             $('#guess').hide(); // hides guess box for drawer
-            var randomNumber = Math.floor();
-            alert(rand)
-
-
-            // generate a random number between zero and length of array
-            // Math.floor / alert word out to drawer
-        
-
-
-
-
+            //we need to create a random number than chooses a word from the "words varible"
+            var randomNumber = Math.floor(Math.random() * 11);
+            var randomWord = words[randomNumber];
+            alert(randomWord);
         }
     });
     socket.on('draw', function(position){ // responds to server whnever someone draws
