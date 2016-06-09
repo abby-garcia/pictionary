@@ -56,29 +56,21 @@ var pictionary = function() {
         if(drawer){
             $('#guess').hide(); // hides guess box for drawer
             //we need to create a random number than chooses a word from the "words varible"
-            var randomNumber = Math.floor(Math.random() * 11);
+            var randomNumber = Math.floor(Math.random() * words.length);
             var randomWord = words[randomNumber];
             alert(randomWord);
+            socket.emit('word', randomWord); //line 4 in instructions
         }
     });
     socket.on('draw', function(position){ // responds to server whnever someone draws
         draw(position); //draws for everyone ELSE!!!!
     });
 
-    socket.on('guess', function(guess){ //modify socket.on('guess' on the server to compare the guess to the word in memory
-        $("#guessMade").text(guess); 
+    
 
-        if( $("#guessMade").text(guess) == randomWord){ // line 7 of instructions
-
-        }
-
-    });
-
-    socket.emit('word', randomWord); //line 4 in instructions
-
-    socket.on('match', function(gameOver){
+    socket.on('match', function(guess){
         drawer = false;
-        alert("Someone Guessed It! :)"); // line 9 of instructions
+        alert("Someone Guessed It! :) The answer is" + guess + "."); // line 9 of instructions
 
     })
 

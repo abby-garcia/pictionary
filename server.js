@@ -7,6 +7,7 @@ app.use(express.static('public'));
 
 var server = http.Server(app);
 var io = socket_io(server);
+var word;
 
 
 var numUsers = 0;
@@ -27,16 +28,19 @@ io.on('connection', function (socket) {
 	});
 
 	socket.on('guess', function(guess){ //where is 'guess' on the main.js side?
-		socket.broadcast.emit('guess', guess);  // is position right?
+		// socket.broadcast.emit('guess', guess);  // is position right?
+		if(word === guess){
+			socket.broadcast.emit('match', guess);
+		}
 	});
 
-	socket.on('word', function(word){ //socket.on should set word to a global so that the server has that in memory
-
+	socket.on('word', function(randomWord){ //socket.on should set word to a global so that the server has that in memory
+		word = randomWord;
 
 	});
 
 	socket.on('match', function(gameOver){
-		socket.broadcast.emit('match', gameOver);
+		
 	});
 
 
