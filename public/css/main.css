@@ -7,6 +7,7 @@ body {
     background-color: #F3E5AB;
     font-size: 1.5em;
     font-family: 'Audiowide', cursive;
+    margin: 0;
 }
 
 h1 {
@@ -24,10 +25,42 @@ h1 {
     padding: 10px;
 }
 
+
+input{
+    height: 51px;
+    font-size: 21pt;
+
+}
+
+.button {
+  display: inline-block;
+  padding: 6px 21px;
+  font-size: 16px;
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: #fff;
+  background-color: #4CAF50;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 9px #999;
+}
+
+.button:hover {background-color: #3e8e41}
+
+.button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+
 canvas {   /*this is where we're going to draw the pictures*/
     width: 800px;
     height: 600px;
     border: 1px #C7CACD solid;
     display: block;
     margin: 0 auto;
+    background-color:white;
 }

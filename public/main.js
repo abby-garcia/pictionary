@@ -70,9 +70,9 @@ var pictionary = function() {
 
     socket.on('match', function(guess){
         drawer = false;
-        alert("Someone Guessed It! :) The answer is" + guess + "."); // line 9 of instructions
+        alert("Someone Guessed It! :) The answer is " + guess + "."); // line 9 of instructions
 
-    })
+    });
 
     // Guessing Section
     var guessBox;
