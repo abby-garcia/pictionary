@@ -25,7 +25,7 @@ var pictionary = function() {
     "body", "dog", "family", "song", "door", "product", "wind", "ship", "area",
     "rock", "order", "fire", "problem", "piece", "top", "bottom", "king",
     "space"
-];
+    ];
 
     canvas = $('canvas');  // use jQuery to select the canvas element
     context = canvas[0].getContext('2d'); //  function to create a drawing context for the canvas /    context object allows you to draw simple graphics to the canvas
@@ -58,7 +58,11 @@ var pictionary = function() {
             //we need to create a random number than chooses a word from the "words varible"
             var randomNumber = Math.floor(Math.random() * words.length);
             var randomWord = words[randomNumber];
-            alert(randomWord);
+
+            $( "#word_to_draw").html( "<p> You're word is </p>" + randomWord );
+
+
+            // alert(randomWord); // print to page instead of alert
             socket.emit('word', randomWord); //line 4 in instructions
         }
     });
