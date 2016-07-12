@@ -9,6 +9,7 @@ var pictionary = function() {
         context.arc(position.x, position.y, // used to draw arcs
                          6, 0, 2 * Math.PI);
         context.fill(); //fills the path in to create a solid black cirlce
+        //create global var that is black, then you can 
     };
 
     var words = [
@@ -54,16 +55,7 @@ var pictionary = function() {
     socket.on('new connection', function(artist){ // true or false are being passed 'drawer = true' or 'drawer = false'! 
         drawer = artist; 
         if(drawer){
-            $('#guess').hide(); // hides guess box for drawer
-            //we need to create a random number than chooses a word from the "words varible"
-            var randomNumber = Math.floor(Math.random() * words.length);
-            var randomWord = words[randomNumber];
-
-            $( "#word_to_draw").html( "<p> You're word is </p>" + randomWord );
-
-
-            // alert(randomWord); // print to page instead of alert
-            socket.emit('word', randomWord); //line 4 in instructions
+           newWordGenerator();
         }
     });
     socket.on('draw', function(position){ // responds to server whnever someone draws
@@ -75,7 +67,16 @@ var pictionary = function() {
     socket.on('match', function(guess){
         drawer = false;
         alert("Someone Guessed It! :) The answer is " + guess + "."); // line 9 of instructions
+        $( "#word_to_draw").html("");
+        $('#guess').show();
+        clearCanvas();
+    });
 
+    socket.on('correctMatch', function(){
+        alert("You're right! :D");
+        drawer=true;
+        newWordGenerator();
+        clearCanvas();
     });
 
     // Guessing Section
@@ -96,7 +97,22 @@ var pictionary = function() {
     guessBox = $('#guess input'); //When there is a keydown event fired by the input you check to see whether the enter key was pressed. If it was pressed, then you log the value to the console and reset the input to be empty.
     guessBox.on('keydown', onKeyDown);    
 
+    var newWordGenerator = function(){
+         $('#guess').hide(); // hides guess box for drawer
+            //we need to create a random number than chooses a word from the "words varible"
+            var randomNumber = Math.floor(Math.random() * words.length);
+            var randomWord = words[randomNumber];
 
+            $( "#word_to_draw").html( "<p> You're word is </p>" + randomWord );
+
+
+            // alert(randomWord); // print to page instead of alert
+            socket.emit('word', randomWord); //line 4 in instructions
+    }
+
+    var clearCanvas = function(){
+        context.clearRect(0,0, canvas[0].width, canvas[0].height); //canvas is a jquery array. you have to specifiy whihc jquery object
+    }
 
 };
 

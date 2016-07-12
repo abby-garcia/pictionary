@@ -31,6 +31,7 @@ io.on('connection', function (socket) {
 		// socket.broadcast.emit('guess', guess);  // is position right?
 		if(word === guess){
 			socket.broadcast.emit('match', guess);
+			socket.emit('correctMatch');
 		}
 	});
 
