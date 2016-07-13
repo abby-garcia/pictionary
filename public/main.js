@@ -129,7 +129,26 @@ $(document).ready(function() {
 
 
 
+$(".blue").on("click", function(){
+    //what am I turning blue?
 
+});
+
+$(".purple").on("click", function(){
+
+});
+
+$(".wine").on("click", function(){
+   
+});
+
+$(".black").on("click", function(){
+
+});
+
+$(".pink").on("click", function(){
+
+});
 
 
 
