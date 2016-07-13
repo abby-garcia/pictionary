@@ -114,12 +114,19 @@ var pictionary = function() {
         context.clearRect(0,0, canvas[0].width, canvas[0].height); //canvas is a jquery array. you have to specifiy whihc jquery object
     }
 
+    // $(".button").on( "click", function() {
+    //     clearCanvas();
+    // });    
+
 };
 
 $(document).ready(function() {
     
     pictionary();
+
 });
+
+
 
 
 

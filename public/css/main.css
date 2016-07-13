@@ -64,3 +64,35 @@ canvas {   /*this is where we're going to draw the pictures*/
     margin: 0 auto;
     background-color:white;
 }
+
+
+/*Colors Pickers*/
+.foo {
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  border: 1px solid rgba(0, 0, 0, .2);
+}
+
+.blue {
+  background: #13b4ff;
+}
+
+.purple {
+  background: #ab3fdd;
+}
+
+.wine {
+  background: #ae163e;
+}
+
+.black{
+    background: #000000;
+}
+
+.pink{
+    background: #FAAFBA;
+}
+
+
