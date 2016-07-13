@@ -114,10 +114,14 @@ var pictionary = function() {
         context.clearRect(0,0, canvas[0].width, canvas[0].height); //canvas is a jquery array. you have to specifiy whihc jquery object
     }
 
-    // $(".button").on( "click", function() {
-    //     clearCanvas();
-    // });    
+    $(".button").on( "click", function() {
+        clearCanvas();
+    });    
 
+    $(".colors div").on("click", function(){
+        context.fillStyle = $(this).css('background-color'); // how it refers to color
+
+    });
 };
 
 $(document).ready(function() {
@@ -129,26 +133,8 @@ $(document).ready(function() {
 
 
 
-$(".blue").on("click", function(){
-    //what am I turning blue?
 
-});
 
-$(".purple").on("click", function(){
-
-});
-
-$(".wine").on("click", function(){
-   
-});
-
-$(".black").on("click", function(){
-
-});
-
-$(".pink").on("click", function(){
-
-});
 
 
 

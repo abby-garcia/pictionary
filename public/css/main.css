@@ -44,7 +44,7 @@ input{
   background-color: #4CAF50;
   border: none;
   border-radius: 15px;
-  box-shadow: 0 9px #999;
+ /* box-shadow: 0 9px #999;*/
 }
 
 .button:hover {background-color: #3e8e41}
@@ -67,7 +67,7 @@ canvas {   /*this is where we're going to draw the pictures*/
 
 
 /*Colors Pickers*/
-.foo {
+.colors div {
   float: left;
   width: 20px;
   height: 20px;
