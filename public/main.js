@@ -45,7 +45,6 @@ var pictionary = function() {
 
     canvas.on('mousedown', function(event){
         drawing = true;
-
     });
 
     canvas.on('mouseup', function(event){
@@ -60,8 +59,10 @@ var pictionary = function() {
     });
     socket.on('draw', function(position){ // responds to server whnever someone draws
         draw(position); //draws for everyone ELSE!!!!
+         socket.emit('colorChanged',$(this).css('background-color')); // for color to change for EVERYONE, not just drawer
     });
 
+    socket.on('colorChanged',function(color){ context.fillStyle(color); });
     
 
     socket.on('match', function(guess){
@@ -79,6 +80,9 @@ var pictionary = function() {
         clearCanvas();
     });
 
+   
+   
+    
     // Guessing Section
     var guessBox;
 

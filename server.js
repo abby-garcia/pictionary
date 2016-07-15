@@ -40,9 +40,15 @@ io.on('connection', function (socket) {
 
 	});
 
+	socket.on('colorChanged',function(color){ 
+		socket.broadcast.emit('changedColor',color); 
+	});
+
 	socket.on('match', function(gameOver){
 		
 	});
+
+
 
 
 
